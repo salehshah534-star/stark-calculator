@@ -26,21 +26,23 @@ export const SidebarCharacters = ({ characters, onChange }: Props) => {
   return (
     <>
       <aside
-        className={`fixed left-0 top-5 bottom-5 bg-white border border-border rounded-r-xl transition-all duration-300 z-40 ${
+        className={`fixed left-0 top-5 bottom-5 glass border-cyber rounded-r-2xl transition-all duration-300 z-40 backdrop-blur-xl ${
           isCollapsed ? "w-[50px]" : "w-[340px]"
         }`}
-        style={{ boxShadow: '2px 0 8px rgba(0, 0, 0, 0.08)' }}
+        style={{ 
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(96, 165, 250, 0.2)',
+          background: 'rgba(255, 255, 255, 0.05)',
+        }}
       >
         {/* Arrow button */}
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-12 bg-white border border-primary rounded-r-lg hover:bg-primary hover:text-white transition-all flex items-center justify-center"
-          style={{ boxShadow: '0 2px 6px rgba(59, 130, 246, 0.2)' }}
+          className="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-12 glass-strong border border-primary rounded-r-lg hover:glow-primary transition-all duration-300 flex items-center justify-center group"
         >
           {isCollapsed ? (
-            <ChevronRight className="w-4 h-4 text-primary hover:text-white" />
+            <ChevronRight className="w-4 h-4 text-primary group-hover:scale-125 transition-transform duration-300" />
           ) : (
-            <ChevronLeft className="w-4 h-4 text-primary hover:text-white" />
+            <ChevronLeft className="w-4 h-4 text-primary group-hover:scale-125 transition-transform duration-300" />
           )}
         </button>
 
@@ -48,14 +50,19 @@ export const SidebarCharacters = ({ characters, onChange }: Props) => {
         {!isCollapsed && (
           <div className="p-5 h-full overflow-hidden flex flex-col">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-foreground">Characters</h2>
+              <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                <span className="text-2xl">👥</span>
+                <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  Characters
+                </span>
+              </h2>
               <button
                 onClick={handleLockToggle}
-                className="w-5 h-5 flex items-center justify-center"
+                className="w-8 h-8 flex items-center justify-center rounded-lg glass-strong hover:glow-primary transition-all duration-300 hover:scale-110"
                 title="Lock to save data"
               >
                 {isLocked ? (
-                  <Lock className="w-[18px] h-[18px] text-primary" />
+                  <Lock className="w-[18px] h-[18px] text-primary animate-pulse" />
                 ) : (
                   <Unlock className="w-[18px] h-[18px] text-muted-foreground" />
                 )}

@@ -1,21 +1,27 @@
 export const Header = () => {
   return (
-    <header className="w-full mt-8 mb-16 px-10">
+    <header className="w-full mt-8 mb-16 px-10 relative">
+      <div className="absolute inset-0 flex items-center justify-center opacity-30 blur-3xl">
+        <div className="w-96 h-96 bg-primary rounded-full animate-pulse"></div>
+      </div>
       <h1 
-        className="text-[48px] md:text-4xl sm:text-[28px] font-bold text-center tracking-[2px] animate-title-font"
+        className="text-[48px] md:text-4xl sm:text-[28px] font-bold text-center tracking-[3px] animate-title-font relative z-10"
         style={{
-          background: 'linear-gradient(90deg, #3B82F6 0%, #8B5CF6 16%, #EC4899 32%, #F59E0B 48%, #10B981 64%, #06B6D4 80%, #3B82F6 100%)',
+          background: 'linear-gradient(90deg, #60A5FA 0%, #A78BFA 20%, #F472B6 40%, #FBBF24 60%, #34D399 80%, #60A5FA 100%)',
           backgroundSize: '200% 100%',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
-          animation: 'gradient-shift 4s linear infinite',
-          textShadow: '0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(59, 130, 246, 0.2), 0 8px 16px rgba(139, 92, 246, 0.15)',
+          animation: 'gradient-shift 6s linear infinite',
+          filter: 'drop-shadow(0 0 20px rgba(96, 165, 250, 0.5)) drop-shadow(0 0 40px rgba(167, 139, 250, 0.3))',
           lineHeight: 1.2,
         }}
       >
         KXF CREATIVE
       </h1>
+      <div className="flex justify-center mt-2">
+        <div className="h-1 w-32 rounded-full gradient-animated"></div>
+      </div>
     </header>
   );
 };

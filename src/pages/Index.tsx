@@ -14,6 +14,7 @@ import { DownloadClearButtons } from "@/components/DownloadClearButtons";
 import { AIAnalyseButton } from "@/components/AIAnalyseButton";
 import { AnalysisProgressModal } from "@/components/AnalysisProgressModal";
 import { AnalysisCompleteModal } from "@/components/AnalysisCompleteModal";
+import { Background3D } from "@/components/Background3D";
 import { Character, GeneratedPrompt, PromptLength } from "@/types";
 import { useToast } from "@/hooks/use-toast";
 
@@ -637,224 +638,236 @@ const Index = () => {
     !referenceStyle.trim();
 
   return (
-    <div className="min-h-screen bg-background flex w-full">
-      {/* Left Sidebar */}
-      <SidebarCharacters 
-        characters={characters} 
-        onChange={setCharacters} 
-      />
-      
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col min-h-screen">
-        <Header />
+    <>
+      <Background3D />
+      <div className="min-h-screen flex w-full relative z-10">
+        {/* Left Sidebar */}
+        <SidebarCharacters 
+          characters={characters} 
+          onChange={setCharacters} 
+        />
         
-        <main className="flex-1 container mx-auto px-4 sm:px-6 lg:px-10 py-6 max-w-6xl space-y-6">
-          {/* Mode Selector */}
-          <ModeSelector mode={mode} onChange={setMode} />
+        {/* Main Content */}
+        <div className="flex-1 flex flex-col min-h-screen">
+          <Header />
           
-          {/* Full Script Context Section */}
-          <SectionWithToggle
-            title="Full Script Context"
-            lockKey="fullScriptContext_lockMode"
-            dataKey="fullScriptContext_data"
-            value={fullContext}
-            onChange={setFullContext}
-          >
-            <FullScriptContext 
-              value={fullContext} 
-              onChange={setFullContext} 
-            />
-          </SectionWithToggle>
+          <main className="flex-1 container mx-auto px-4 sm:px-6 lg:px-10 py-6 max-w-6xl space-y-6">
+            {/* Mode Selector */}
+            <div className="glass rounded-xl p-1 animate-fade-in border-cyber">
+              <ModeSelector mode={mode} onChange={setMode} />
+            </div>
+            
+            {/* Full Script Context Section */}
+            <div className="glass rounded-2xl overflow-hidden border-cyber animate-fade-in" style={{ animationDelay: '0.1s' }}>
+              <SectionWithToggle
+                title="Full Script Context"
+                lockKey="fullScriptContext_lockMode"
+                dataKey="fullScriptContext_data"
+                value={fullContext}
+                onChange={setFullContext}
+              >
+                <FullScriptContext 
+                  value={fullContext} 
+                  onChange={setFullContext} 
+                />
+              </SectionWithToggle>
+            </div>
 
-          {/* AI Analyse Button (Only in AI Advanced Mode) */}
-          {mode === 'ai-advanced' && (
-            <AIAnalyseButton 
-              onClick={handleAIAnalyse}
-              isAnalyzing={isAnalyzing}
-              disabled={!fullContext.trim()}
-            />
-          )}
+            {/* AI Analyse Button (Only in AI Advanced Mode) */}
+            {mode === 'ai-advanced' && (
+              <div className="animate-scale-in" style={{ animationDelay: '0.2s' }}>
+                <AIAnalyseButton 
+                  onClick={handleAIAnalyse}
+                  isAnalyzing={isAnalyzing}
+                  disabled={!fullContext.trim()}
+                />
+              </div>
+            )}
 
-          {/* Split Script Lines Section */}
-          <SectionWithToggle
-            title="Split Script Lines (One Scene Per Line)"
-            lockKey="splitScriptLines_lockMode"
-            dataKey="splitScriptLines_data"
-            value={splitLines}
-            onChange={setSplitLines}
-          >
-            <SplitScriptLines 
-              value={splitLines} 
-              onChange={setSplitLines} 
-            />
-          </SectionWithToggle>
+            {/* Split Script Lines Section */}
+            <div className="glass rounded-2xl overflow-hidden border-cyber animate-fade-in" style={{ animationDelay: '0.3s' }}>
+              <SectionWithToggle
+                title="Split Script Lines (One Scene Per Line)"
+                lockKey="splitScriptLines_lockMode"
+                dataKey="splitScriptLines_data"
+                value={splitLines}
+                onChange={setSplitLines}
+              >
+                <SplitScriptLines 
+                  value={splitLines} 
+                  onChange={setSplitLines} 
+                />
+              </SectionWithToggle>
+            </div>
 
-          {/* Reference Style Section */}
-          <SectionWithToggle
-            title="Reference Prompt Style (Style Template)"
-            lockKey="referenceStyle_lockMode"
-            dataKey="referenceStyle_data"
-            value={referenceStyle}
-            onChange={setReferenceStyle}
-          >
-            <ReferenceStyle 
-              value={referenceStyle} 
-              onChange={setReferenceStyle} 
-            />
-          </SectionWithToggle>
+            {/* Reference Style Section */}
+            <div className="glass rounded-2xl overflow-hidden border-cyber animate-fade-in" style={{ animationDelay: '0.4s' }}>
+              <SectionWithToggle
+                title="Reference Prompt Style (Style Template)"
+                lockKey="referenceStyle_lockMode"
+                dataKey="referenceStyle_data"
+                value={referenceStyle}
+                onChange={setReferenceStyle}
+              >
+                <ReferenceStyle 
+                  value={referenceStyle} 
+                  onChange={setReferenceStyle} 
+                />
+              </SectionWithToggle>
+            </div>
 
-          {/* Prompt Length Selector */}
-          <PromptLengthSelector 
-            value={promptLength} 
-            onChange={setPromptLength}
-            showNumbers={showNumbers}
-            onShowNumbersChange={setShowNumbers}
-            showScriptLines={showScriptLines}
-            onShowScriptLinesChange={setShowScriptLines}
+            {/* Prompt Length Selector */}
+            <div className="glass rounded-2xl p-6 border-cyber animate-fade-in" style={{ animationDelay: '0.5s' }}>
+              <PromptLengthSelector 
+                value={promptLength} 
+                onChange={setPromptLength}
+                showNumbers={showNumbers}
+                onShowNumbersChange={setShowNumbers}
+                showScriptLines={showScriptLines}
+                onShowScriptLinesChange={setShowScriptLines}
+              />
+            </div>
+            
+            {/* Progress Bar and Control Buttons (During Generation) */}
+            {isGenerating && (
+              <div className="glass rounded-2xl p-6 border-cyber animate-scale-in">
+                <ProgressBar progress={progress} />
+                <div className="flex justify-center gap-5 mt-6">
+                  <button
+                    onClick={handlePause}
+                    className="w-[150px] h-[52px] rounded-full font-bold text-[15px] text-white transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 glow-primary"
+                    style={{
+                      background: isPaused 
+                        ? 'linear-gradient(135deg, #10B981, #059669)' 
+                        : 'linear-gradient(135deg, #3B82F6, #2563EB)',
+                    }}
+                  >
+                    {isPaused ? '▶️ Resume' : '⏸️ Pause'}
+                  </button>
+                  <button
+                    onClick={handleCancel}
+                    className="w-[150px] h-[52px] rounded-full font-bold text-[15px] glass-strong border-2 border-red-500 text-red-500 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all duration-300 flex items-center justify-center shadow-lg hover:scale-110 active:scale-95"
+                  >
+                    ❌ Cancel
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Generate Button (When Not Generating) */}
+            {!isGenerating && (
+              <div className="flex flex-col items-center mt-6 mb-4 animate-fade-in">
+                {isGenerateDisabled && (
+                  <p className="text-sm text-muted-foreground mb-3 text-center glass rounded-full px-6 py-2">
+                    {!splitLines.trim() ? '⚠️ Please add split script lines' : 
+                     !referenceStyle.trim() ? '⚠️ Please add reference prompt style' : 
+                     '⚠️ Please fill in all required fields'}
+                  </p>
+                )}
+                <GenerateButton 
+                  onClick={handleGenerate} 
+                  disabled={isGenerateDisabled} 
+                />
+              </div>
+            )}
+
+            {/* Download and Clear Buttons (When Prompts Exist) */}
+            {generatedPrompts.length > 0 && (
+              <>
+                <div className="glass rounded-2xl p-4 border-cyber animate-fade-in">
+                  <DownloadClearButtons 
+                    prompts={generatedPrompts}
+                    onClear={() => {
+                      setGeneratedPrompts([]);
+                      setProgress(0);
+                      toast({
+                        title: "🗑️ Prompts Cleared",
+                        description: "All generated prompts have been removed"
+                      });
+                    }}
+                    showNumbers={showNumbers}
+                    showScriptLines={showScriptLines}
+                  />
+                </div>
+                
+                {/* Generated Prompts Display */}
+                <div className="glass rounded-2xl overflow-hidden border-cyber animate-fade-in">
+                  <GeneratedPrompts 
+                    prompts={generatedPrompts} 
+                    characters={characters}
+                    showNumbers={showNumbers}
+                    showScriptLines={showScriptLines}
+                  />
+                </div>
+              </>
+            )}
+          </main>
+          
+          {/* AI Analysis Progress Modal */}
+          <AnalysisProgressModal 
+            isOpen={isAnalyzing} 
+            steps={analysisSteps}
+            progress={analysisProgress}
+            currentTask={analysisCurrentTask}
+            estimatedTime={analysisEstimatedTime}
           />
           
-          {/* Progress Bar and Control Buttons (During Generation) */}
-          {isGenerating && (
-            <>
-              <ProgressBar progress={progress} />
-              <div className="flex justify-center gap-5 mt-6">
-                <button
-                  onClick={handlePause}
-                  className="w-[150px] h-[52px] rounded-[26px] font-bold text-[15px] text-white transition-all duration-200 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
-                  style={{
-                    background: isPaused 
-                      ? 'linear-gradient(135deg, #10B981, #059669)' 
-                      : 'linear-gradient(135deg, #3B82F6, #2563EB)',
-                    boxShadow: isPaused 
-                      ? '0 4px 12px rgba(16, 185, 129, 0.4)' 
-                      : '0 4px 12px rgba(59, 130, 246, 0.4)',
-                  }}
-                >
-                  {isPaused ? '▶️ Resume' : '⏸️ Pause'}
-                </button>
-                <button
-                  onClick={handleCancel}
-                  className="w-[150px] h-[52px] rounded-[26px] font-bold text-[15px] border-2 bg-white hover:bg-red-600 hover:text-white hover:border-red-600 transition-all duration-200 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
-                  style={{
-                    borderColor: '#EF4444',
-                    color: '#EF4444',
-                  }}
-                >
-                  ❌ Cancel
-                </button>
-              </div>
-            </>
-          )}
-
-          {/* Generate Button (When Not Generating) */}
-          {!isGenerating && (
-            <div className="flex flex-col items-center mt-6 mb-4">
-              {isGenerateDisabled && (
-                <p className="text-sm text-muted-foreground mb-3 text-center">
-                  {!splitLines.trim() ? '⚠️ Please add split script lines' : 
-                   !referenceStyle.trim() ? '⚠️ Please add reference prompt style' : 
-                   '⚠️ Please fill in all required fields'}
-                </p>
-              )}
-              <GenerateButton 
-                onClick={handleGenerate} 
-                disabled={isGenerateDisabled} 
-              />
-            </div>
-          )}
-
-          {/* Download and Clear Buttons (When Prompts Exist) */}
-          {generatedPrompts.length > 0 && (
-            <>
-              <DownloadClearButtons 
-                prompts={generatedPrompts}
-                onClear={() => {
-                  setGeneratedPrompts([]);
-                  setProgress(0);
-                  toast({
-                    title: "🗑️ Prompts Cleared",
-                    description: "All generated prompts have been removed"
-                  });
-                }}
-                showNumbers={showNumbers}
-                showScriptLines={showScriptLines}
-              />
-              
-              {/* Generated Prompts Display */}
-              <GeneratedPrompts 
-                prompts={generatedPrompts} 
-                characters={characters}
-                showNumbers={showNumbers}
-                showScriptLines={showScriptLines}
-              />
-            </>
-          )}
-        </main>
-        
-        {/* AI Analysis Progress Modal */}
-        <AnalysisProgressModal 
-          isOpen={isAnalyzing} 
-          steps={analysisSteps}
-          progress={analysisProgress}
-          currentTask={analysisCurrentTask}
-          estimatedTime={analysisEstimatedTime}
-        />
-        
-        {/* AI Analysis Complete Modal */}
-        <AnalysisCompleteModal 
-          isOpen={showAnalysisComplete}
-          results={analysisResults}
-          onClose={() => setShowAnalysisComplete(false)}
-        />
-        
-        {/* Cancel Confirmation Dialog */}
-        {showCancelDialog && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 animate-in fade-in duration-200">
-            <div className="bg-white rounded-xl p-6 shadow-2xl w-[420px] animate-in zoom-in duration-200">
-              <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
-                <span className="text-2xl">⚠️</span>
-                Cancel Generation?
-              </h3>
-              <div className="space-y-3 mb-6">
-                <p className="text-sm text-muted-foreground">
-                  This will stop prompt generation at line <strong>{generatedPrompts.length}</strong> of{' '}
-                  <strong>{splitLines.split('\n').filter(l => l.trim()).length}</strong>.
-                </p>
-                <div className="bg-muted/50 rounded-lg p-3 space-y-1">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Generated prompts:</span>
-                    <span className="font-semibold text-green-600">{generatedPrompts.length}</span>
+          {/* AI Analysis Complete Modal */}
+          <AnalysisCompleteModal 
+            isOpen={showAnalysisComplete}
+            results={analysisResults}
+            onClose={() => setShowAnalysisComplete(false)}
+          />
+          
+          {/* Cancel Confirmation Dialog */}
+          {showCancelDialog && (
+            <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 animate-fade-in">
+              <div className="glass-strong rounded-2xl p-6 shadow-2xl w-[420px] animate-scale-in border-cyber">
+                <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                  <span className="text-2xl">⚠️</span>
+                  Cancel Generation?
+                </h3>
+                <div className="space-y-3 mb-6">
+                  <p className="text-sm text-muted-foreground">
+                    This will stop prompt generation at line <strong>{generatedPrompts.length}</strong> of{' '}
+                    <strong>{splitLines.split('\n').filter(l => l.trim()).length}</strong>.
+                  </p>
+                  <div className="glass rounded-lg p-3 space-y-1">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">Generated prompts:</span>
+                      <span className="font-semibold text-success">{generatedPrompts.length}</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">Remaining prompts:</span>
+                      <span className="font-semibold text-warning">
+                        {splitLines.split('\n').filter(l => l.trim()).length - generatedPrompts.length}
+                      </span>
+                    </div>
                   </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Remaining prompts:</span>
-                    <span className="font-semibold text-orange-600">
-                      {splitLines.split('\n').filter(l => l.trim()).length - generatedPrompts.length}
-                    </span>
-                  </div>
+                  <p className="text-xs text-muted-foreground italic">
+                    ℹ️ Generated prompts will be saved. You can continue later.
+                  </p>
                 </div>
-                <p className="text-xs text-muted-foreground italic">
-                  ℹ️ Generated prompts will be saved. You can continue later.
-                </p>
-              </div>
-              <div className="flex gap-3 justify-end">
-                <button
-                  onClick={() => setShowCancelDialog(false)}
-                  className="px-6 py-2.5 rounded-full border-2 border-border text-sm font-semibold hover:bg-muted transition-all hover:scale-105 active:scale-95"
-                >
-                  Keep Generating
-                </button>
-                <button
-                  onClick={confirmCancel}
-                  className="px-6 py-2.5 rounded-full bg-red-600 text-white text-sm font-semibold hover:bg-red-700 transition-all hover:scale-105 active:scale-95 shadow-lg"
-                >
-                  Yes, Cancel
-                </button>
+                <div className="flex gap-3 justify-end">
+                  <button
+                    onClick={() => setShowCancelDialog(false)}
+                    className="px-6 py-2.5 rounded-full glass border-2 border-border text-sm font-semibold hover:glass-strong transition-all duration-300 hover:scale-105 active:scale-95"
+                  >
+                    Keep Generating
+                  </button>
+                  <button
+                    onClick={confirmCancel}
+                    className="px-6 py-2.5 rounded-full bg-gradient-to-r from-red-600 to-red-700 text-white text-sm font-semibold hover:from-red-700 hover:to-red-800 transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg glow-accent"
+                  >
+                    Yes, Cancel
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
