@@ -8,7 +8,7 @@ interface Props {
 export const LockToggle = ({ isLocked, onChange }: Props) => {
   return (
     <div className="flex items-center gap-2">
-      <span className="text-sm text-muted-foreground">Lock & Save</span>
+      <span className="text-sm font-bold text-primary">Lock & Save</span>
       <button
         onClick={() => onChange(!isLocked)}
         className={`relative w-[50px] h-[26px] rounded-full transition-all duration-200 ${

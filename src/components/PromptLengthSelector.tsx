@@ -43,7 +43,7 @@ export const PromptLengthSelector = ({
   return (
     <div className="bg-white border border-border rounded-lg p-3 mb-5 flex items-center justify-between gap-4 shadow-[var(--shadow-soft)] h-[50px]">
       <div className="flex items-center gap-2">
-        <label className="text-sm font-medium text-muted-foreground whitespace-nowrap">
+        <label className="text-sm font-bold text-primary whitespace-nowrap">
           Prompt Length:
         </label>
         <select
