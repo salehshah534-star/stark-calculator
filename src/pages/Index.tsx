@@ -225,12 +225,12 @@ const Index = () => {
 
       // Make API call (runs in parallel with progress updates)
       const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/ai-analyse`,
+        'https://kzzbnqrfiqrllxzxvykv.supabase.co/functions/v1/ai-analyse',
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt6emJucXJmaXFybGx4enh2eWt2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA4NTYxNDQsImV4cCI6MjA3NjQzMjE0NH0.nh4_nn2fG8QWN-gFxl_U6aEmQ6nIpZnDJOFXd_a86tk',
           },
           body: JSON.stringify({ 
             fullContext,
@@ -447,12 +447,12 @@ const Index = () => {
         generationAbortController.current = requestController;
         
         const response = await fetch(
-          `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-prompt`,
+          'https://kzzbnqrfiqrllxzxvykv.supabase.co/functions/v1/generate-prompt',
           {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+              'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt6emJucXJmaXFybGx4enh2eWt2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA4NTYxNDQsImV4cCI6MjA3NjQzMjE0NH0.nh4_nn2fG8QWN-gFxl_U6aEmQ6nIpZnDJOFXd_a86tk',
             },
             body: JSON.stringify({
               fullContext,
