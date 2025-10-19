@@ -180,7 +180,7 @@ export const GeneratedPrompts = ({ prompts, characters, showNumbers, showScriptL
           <button
             onClick={copySelected}
             disabled={selected.size === 0}
-            className="h-8 px-4 rounded-full text-sm font-medium text-white transition-all disabled:opacity-50"
+            className="h-8 px-4 rounded-full text-sm font-bold text-primary transition-all disabled:opacity-50"
             style={{
               background: selected.size > 0 ? 'hsl(var(--primary))' : 'hsl(var(--muted))',
               boxShadow: selected.size > 0 ? 'var(--shadow-button)' : 'none',
