@@ -1,7 +1,1 @@
-project_id = "mypbunvkzpqvcfhnxtht"
-
-[functions.generate-prompt]
-verify_jwt = false
-
-[functions.ai-analyse]
-verify_jwt = false
+project_id = "kzzbnqrfiqrllxzxvykv"
