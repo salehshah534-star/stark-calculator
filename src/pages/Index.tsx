@@ -14,7 +14,7 @@ import { DownloadClearButtons } from "@/components/DownloadClearButtons";
 import { AIAnalyseButton } from "@/components/AIAnalyseButton";
 import { AnalysisProgressModal } from "@/components/AnalysisProgressModal";
 import { AnalysisCompleteModal } from "@/components/AnalysisCompleteModal";
-import { Background3D } from "@/components/Background3D";
+import { OceanWaveBackground } from "@/components/OceanWaveBackground";
 import { Character, GeneratedPrompt, PromptLength } from "@/types";
 import { useToast } from "@/hooks/use-toast";
 
@@ -639,7 +639,7 @@ const Index = () => {
 
   return (
     <>
-      <Background3D />
+      <OceanWaveBackground />
       <div className="min-h-screen flex w-full relative z-10">
         {/* Left Sidebar */}
         <SidebarCharacters 

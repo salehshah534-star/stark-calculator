@@ -21,7 +21,7 @@ export const FullScriptContext = ({ value, onChange }: Props) => {
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder="Paste your complete script here for AI to understand the full story, theme, characters, and narrative flow..."
-          className="w-full font-sans resize-none border border-border focus:border-2 focus:border-primary rounded-lg p-4 custom-scrollbar bg-black/20"
+          className="w-full font-sans resize-none border-2 border-input bg-background/50 backdrop-blur-sm focus:border-primary focus:ring-2 focus:ring-primary/50 rounded-xl p-5 custom-scrollbar transition-all duration-300 hover:border-primary/50 shadow-sm hover:shadow-md"
           style={{ height: expanded ? '350px' : '180px' }}
         />
 

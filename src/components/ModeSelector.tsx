@@ -24,13 +24,13 @@ export const ModeSelector = ({ mode, onChange }: Props) => {
 
   return (
     <div className="flex justify-center mb-6">
-      <div className="inline-flex bg-white rounded-[30px] p-1 shadow-md" style={{ width: '320px', height: '60px' }}>
+      <div className="inline-flex glass rounded-full p-1.5 shadow-[var(--shadow-card)] border border-primary/20" style={{ width: '320px', height: '60px' }}>
         <button
           onClick={() => handleModeChange('manual')}
-          className={`flex-1 flex items-center justify-center gap-2 rounded-[26px] font-semibold transition-all duration-300 ${
+          className={`flex-1 flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300 hover-lift ${
             mode === 'manual'
-              ? 'bg-primary text-white shadow-sm'
-              : 'text-muted-foreground hover:text-foreground'
+              ? 'bg-primary text-primary-foreground shadow-[var(--shadow-button)]'
+              : 'text-muted-foreground hover:text-foreground hover:bg-primary/5'
           }`}
         >
           <Hand className="w-5 h-5" />
@@ -39,13 +39,13 @@ export const ModeSelector = ({ mode, onChange }: Props) => {
         
         <button
           onClick={() => handleModeChange('ai-advanced')}
-          className={`flex-1 flex items-center justify-center gap-2 rounded-[26px] font-semibold transition-all duration-300 ${
+          className={`flex-1 flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300 hover-lift ${
             mode === 'ai-advanced'
-              ? 'text-white shadow-sm'
-              : 'text-muted-foreground hover:text-foreground'
+              ? 'text-primary-foreground shadow-[var(--shadow-button)]'
+              : 'text-muted-foreground hover:text-foreground hover:bg-primary/5'
           }`}
           style={mode === 'ai-advanced' ? {
-            background: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)'
+            background: 'var(--gradient-ocean)'
           } : undefined}
         >
           <Bot className="w-5 h-5" />

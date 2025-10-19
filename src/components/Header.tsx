@@ -45,25 +45,28 @@ export const Header = () => {
         <div className="w-96 h-96 bg-primary rounded-full animate-pulse"></div>
       </div>
       <h1 
-        className="text-[72px] md:text-[56px] sm:text-[40px] font-bold text-center tracking-[3px] relative z-10 min-h-[90px]"
+        className="text-[72px] md:text-[56px] sm:text-[40px] font-bold text-center tracking-[3px] relative z-10 min-h-[90px] hover:scale-105 transition-transform duration-300"
         style={{
           fontFamily: `'${fonts[fontIndex]}', sans-serif`,
-          background: 'linear-gradient(90deg, #60A5FA 0%, #A78BFA 20%, #F472B6 40%, #FBBF24 60%, #34D399 80%, #60A5FA 100%)',
+          background: 'linear-gradient(135deg, hsl(217 91% 60%), hsl(213 97% 69%), hsl(217 91% 60%))',
           backgroundSize: '200% 100%',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
           animation: 'gradient-shift 6s linear infinite',
-          filter: 'drop-shadow(0 0 20px rgba(96, 165, 250, 0.5)) drop-shadow(0 0 40px rgba(167, 139, 250, 0.3))',
+          textShadow: '0 0 60px rgba(59, 130, 246, 0.5)',
           lineHeight: 1.2,
           transition: 'font-family 0.3s ease',
         }}
       >
         {displayText}
-        <span className="animate-pulse">|</span>
+        <span className="animate-pulse" style={{ 
+          color: 'hsl(217 91% 60%)',
+          WebkitTextFillColor: 'hsl(217 91% 60%)'
+        }}>|</span>
       </h1>
       <div className="flex justify-center mt-2">
-        <div className="h-1 w-32 rounded-full gradient-animated"></div>
+        <div className="h-1 w-32 rounded-full bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse"></div>
       </div>
     </header>
   );
