@@ -50,7 +50,7 @@ export const PromptLengthSelector = ({
         <select
           value={value}
           onChange={(e) => onChange(e.target.value as PromptLength)}
-          className="h-8 px-2.5 bg-white border border-border rounded-lg text-sm cursor-pointer focus:border-2 focus:border-primary outline-none"
+          className="h-8 px-2.5 bg-white border border-border rounded-lg text-sm font-bold text-primary cursor-pointer focus:border-2 focus:border-primary outline-none"
           style={{ width: '160px' }}
         >
           {options.map((option) => (
