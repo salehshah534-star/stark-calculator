@@ -57,7 +57,7 @@ export const CharacterManagement = ({ characters, onChange }: Props) => {
 
       <div className="space-y-3 max-h-[calc(100vh-280px)] overflow-y-auto custom-scrollbar">
         {characters.map((character) => (
-          <div key={character.id} className="bg-white border border-border rounded-lg p-4 shadow-[var(--shadow-soft)]">
+          <div key={character.id} className="bg-black/20 border border-border rounded-lg p-4 shadow-[var(--shadow-soft)]">
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <label className="text-foreground text-sm font-semibold">Name</label>

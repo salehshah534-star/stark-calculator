@@ -17,7 +17,7 @@ export const ReferenceStyle = ({ value, onChange }: Props) => {
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder="Example: Semi-realistic 90s 2D animation style, cel animation aesthetic, warm lighting, nostalgic feel..."
-          className="w-full font-sans resize-none border border-border focus:border-2 focus:border-primary rounded-lg p-4 custom-scrollbar"
+          className="w-full font-sans resize-none border border-border focus:border-2 focus:border-primary rounded-lg p-4 custom-scrollbar bg-black/20"
           style={{ height: expanded ? '200px' : '100px', lineHeight: '1.6' }}
         />
         
