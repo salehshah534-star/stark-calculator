@@ -162,13 +162,13 @@ export const GeneratedPrompts = ({ prompts, characters, showNumbers, showScriptL
         <div className="flex items-center gap-2">
           <button
             onClick={selectAll}
-            className="h-8 px-4 rounded-full border border-border text-sm font-medium text-muted-foreground hover:bg-accent transition-all"
+            className="h-8 px-4 rounded-full border border-border text-sm font-bold text-primary hover:bg-accent transition-all"
           >
             Select All
           </button>
           <button
             onClick={deselectAll}
-            className="h-8 px-4 rounded-full border border-border text-sm font-medium text-muted-foreground hover:bg-accent transition-all"
+            className="h-8 px-4 rounded-full border border-border text-sm font-bold text-primary hover:bg-accent transition-all"
           >
             Deselect All
           </button>

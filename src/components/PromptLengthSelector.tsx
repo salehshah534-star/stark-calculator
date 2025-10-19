@@ -11,10 +11,11 @@ interface Props {
 }
 
 const options = [
-  { value: 'quick' as PromptLength, label: 'Short (15-20)', wordRange: '15-20' },
-  { value: 'balanced' as PromptLength, label: 'Medium (25-45)', wordRange: '25-45' },
-  { value: 'detailed' as PromptLength, label: 'Large (50-75)', wordRange: '50-75' },
-  { value: 'extended' as PromptLength, label: 'Extra (85-100)', wordRange: '85-100' },
+  { value: 'quick' as PromptLength, label: 'Short (15-25)', wordRange: '15-25' },
+  { value: 'balanced' as PromptLength, label: 'Medium (25-50)', wordRange: '25-50' },
+  { value: 'detailed' as PromptLength, label: 'Detailed (50-75)', wordRange: '50-75' },
+  { value: 'comprehensive' as PromptLength, label: 'Comprehensive (75-100)', wordRange: '75-100' },
+  { value: 'extended' as PromptLength, label: 'Extended (100-150)', wordRange: '100-150' },
 ];
 
 export const PromptLengthSelector = ({ 
@@ -79,7 +80,7 @@ export const PromptLengthSelector = ({
               }`}
             />
           </button>
-          <span className="text-[13px] text-muted-foreground whitespace-nowrap">Show Numbers</span>
+          <span className="text-[13px] font-bold text-primary whitespace-nowrap">Show Numbers</span>
         </div>
 
         <div className="flex items-center gap-2">
@@ -100,7 +101,7 @@ export const PromptLengthSelector = ({
               }`}
             />
           </button>
-          <span className="text-[13px] text-muted-foreground whitespace-nowrap">SLWP</span>
+          <span className="text-[13px] font-bold text-primary whitespace-nowrap">SLWP</span>
         </div>
       </div>
     </div>
