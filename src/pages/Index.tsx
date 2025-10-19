@@ -685,7 +685,7 @@ const Index = () => {
             )}
 
             {/* Split Script Lines Section */}
-            <div className="glass rounded-2xl overflow-hidden border-cyber animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <div className="glass rounded-2xl overflow-hidden shadow-[var(--shadow-card)] border border-primary/20 animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <SectionWithToggle
                 title="Split Script Lines (One Scene Per Line)"
                 lockKey="splitScriptLines_lockMode"
@@ -701,7 +701,7 @@ const Index = () => {
             </div>
 
             {/* Reference Style Section */}
-            <div className="glass rounded-2xl overflow-hidden border-cyber animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            <div className="glass rounded-2xl overflow-hidden shadow-[var(--shadow-card)] border border-primary/20 animate-fade-in" style={{ animationDelay: '0.4s' }}>
               <SectionWithToggle
                 title="Reference Prompt Style (Style Template)"
                 lockKey="referenceStyle_lockMode"
@@ -717,7 +717,7 @@ const Index = () => {
             </div>
 
             {/* Prompt Length Selector */}
-            <div className="glass rounded-2xl p-6 border-cyber animate-fade-in" style={{ animationDelay: '0.5s' }}>
+            <div className="glass rounded-2xl p-6 shadow-[var(--shadow-card)] border border-primary/20 animate-fade-in" style={{ animationDelay: '0.5s' }}>
               <PromptLengthSelector 
                 value={promptLength} 
                 onChange={setPromptLength}
@@ -730,23 +730,23 @@ const Index = () => {
             
             {/* Progress Bar and Control Buttons (During Generation) */}
             {isGenerating && (
-              <div className="glass rounded-2xl p-6 border-cyber animate-scale-in">
+              <div className="glass rounded-2xl p-6 shadow-[var(--shadow-card)] border border-primary/20 animate-scale-in">
                 <ProgressBar progress={progress} />
                 <div className="flex justify-center gap-5 mt-6">
                   <button
                     onClick={handlePause}
-                    className="w-[150px] h-[52px] rounded-full font-bold text-[15px] text-white transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 glow-primary"
+                    className="w-[150px] h-[52px] rounded-full font-bold text-[15px] text-white transition-all duration-300 flex items-center justify-center shadow-[var(--shadow-button)] hover:shadow-[var(--shadow-button-hover)] hover-lift active-press"
                     style={{
                       background: isPaused 
-                        ? 'linear-gradient(135deg, #10B981, #059669)' 
-                        : 'linear-gradient(135deg, #3B82F6, #2563EB)',
+                        ? 'linear-gradient(135deg, hsl(142 76% 50%), hsl(142 76% 40%))' 
+                        : 'var(--gradient-ocean)',
                     }}
                   >
                     {isPaused ? '▶️ Resume' : '⏸️ Pause'}
                   </button>
                   <button
                     onClick={handleCancel}
-                    className="w-[150px] h-[52px] rounded-full font-bold text-[15px] glass-strong border-2 border-red-500 text-red-500 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all duration-300 flex items-center justify-center shadow-lg hover:scale-110 active:scale-95"
+                    className="w-[150px] h-[52px] rounded-full font-bold text-[15px] glass border-2 border-destructive/50 text-destructive hover:bg-destructive hover:text-white hover:border-destructive transition-all duration-300 flex items-center justify-center shadow-lg hover-lift active-press"
                   >
                     ❌ Cancel
                   </button>
@@ -774,7 +774,7 @@ const Index = () => {
             {/* Download and Clear Buttons (When Prompts Exist) */}
             {generatedPrompts.length > 0 && (
               <>
-                <div className="glass rounded-2xl p-4 border-cyber animate-fade-in">
+                <div className="glass rounded-2xl p-4 shadow-[var(--shadow-card)] border border-primary/20 animate-fade-in">
                   <DownloadClearButtons 
                     prompts={generatedPrompts}
                     onClear={() => {
@@ -791,7 +791,7 @@ const Index = () => {
                 </div>
                 
                 {/* Generated Prompts Display */}
-                <div className="glass rounded-2xl overflow-hidden border-cyber animate-fade-in">
+                <div className="glass rounded-2xl overflow-hidden shadow-[var(--shadow-card)] border border-primary/20 animate-fade-in">
                   <GeneratedPrompts 
                     prompts={generatedPrompts} 
                     characters={characters}
@@ -822,7 +822,7 @@ const Index = () => {
           {/* Cancel Confirmation Dialog */}
           {showCancelDialog && (
             <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 animate-fade-in">
-              <div className="glass-strong rounded-2xl p-6 shadow-2xl w-[420px] animate-scale-in border-cyber">
+              <div className="glass-strong rounded-2xl p-6 shadow-[var(--shadow-elevated)] w-[420px] animate-scale-in border border-primary/30">
                 <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
                   <span className="text-2xl">⚠️</span>
                   Cancel Generation?
@@ -851,13 +851,13 @@ const Index = () => {
                 <div className="flex gap-3 justify-end">
                   <button
                     onClick={() => setShowCancelDialog(false)}
-                    className="px-6 py-2.5 rounded-full glass border-2 border-border text-sm font-semibold hover:glass-strong transition-all duration-300 hover:scale-105 active:scale-95"
+                    className="px-6 py-2.5 rounded-full glass border-2 border-primary/30 text-sm font-semibold hover:bg-primary/10 transition-all duration-300 hover-lift active-press"
                   >
                     Keep Generating
                   </button>
                   <button
                     onClick={confirmCancel}
-                    className="px-6 py-2.5 rounded-full bg-gradient-to-r from-red-600 to-red-700 text-white text-sm font-semibold hover:from-red-700 hover:to-red-800 transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg glow-accent"
+                    className="px-6 py-2.5 rounded-full bg-gradient-to-r from-destructive to-destructive/80 text-white text-sm font-semibold hover:from-destructive/90 hover:to-destructive/70 transition-all duration-300 hover-lift active-press shadow-lg"
                   >
                     Yes, Cancel
                   </button>

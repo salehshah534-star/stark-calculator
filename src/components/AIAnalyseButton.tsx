@@ -12,16 +12,13 @@ export const AIAnalyseButton = ({ onClick, isAnalyzing, disabled }: Props) => {
       <button
         onClick={onClick}
         disabled={disabled || isAnalyzing}
-        className="relative flex items-center justify-center gap-3 px-8 py-4 text-white font-bold text-base rounded-full shadow-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none group overflow-hidden"
+        className="relative flex items-center justify-center gap-3 px-8 py-4 text-white font-bold text-base rounded-full transition-all duration-300 hover-lift disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none group overflow-hidden shadow-[var(--shadow-button)] hover:shadow-[var(--shadow-button-hover)] active-press"
         style={{
           width: '240px',
           height: '56px',
           background: disabled 
             ? 'hsl(var(--muted))' 
-            : 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 50%, #7C3AED 100%)',
-          boxShadow: disabled 
-            ? 'none' 
-            : '0 0 30px rgba(139, 92, 246, 0.6), 0 8px 32px rgba(139, 92, 246, 0.4)'
+            : 'var(--gradient-ocean)',
         }}
       >
         {/* Pulsing background effect */}
@@ -29,7 +26,7 @@ export const AIAnalyseButton = ({ onClick, isAnalyzing, disabled }: Props) => {
           <div 
             className="absolute inset-0 rounded-full animate-pulse"
             style={{
-              background: 'radial-gradient(circle, rgba(167, 139, 250, 0.6), transparent)',
+              background: 'radial-gradient(circle, rgba(96, 165, 250, 0.6), transparent)',
             }}
           />
         )}
@@ -56,7 +53,7 @@ export const AIAnalyseButton = ({ onClick, isAnalyzing, disabled }: Props) => {
           <div 
             className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{
-              background: 'linear-gradient(135deg, rgba(167, 139, 250, 0.4), rgba(139, 92, 246, 0.4))',
+              background: 'radial-gradient(circle, rgba(96, 165, 250, 0.4), transparent)',
               filter: 'blur(15px)',
             }}
           />

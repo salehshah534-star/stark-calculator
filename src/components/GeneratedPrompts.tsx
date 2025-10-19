@@ -158,17 +158,17 @@ export const GeneratedPrompts = ({ prompts, characters, showNumbers, showScriptL
   return (
     <section className="space-y-4">
       {/* Control bar */}
-      <div className="bg-white border border-border rounded-lg p-2.5 flex items-center justify-between gap-3 h-12 shadow-[var(--shadow-soft)]">
+      <div className="glass border border-primary/20 rounded-lg p-2.5 flex items-center justify-between gap-3 h-12">
         <div className="flex items-center gap-2">
           <button
             onClick={selectAll}
-            className="h-8 px-4 rounded-full border border-border text-sm font-bold text-primary hover:bg-accent transition-all"
+            className="h-8 px-4 rounded-full border border-primary/30 text-sm font-bold text-primary hover:bg-primary/10 transition-all hover-lift"
           >
             Select All
           </button>
           <button
             onClick={deselectAll}
-            className="h-8 px-4 rounded-full border border-border text-sm font-bold text-primary hover:bg-accent transition-all"
+            className="h-8 px-4 rounded-full border border-primary/30 text-sm font-bold text-primary hover:bg-primary/10 transition-all hover-lift"
           >
             Deselect All
           </button>
@@ -180,7 +180,7 @@ export const GeneratedPrompts = ({ prompts, characters, showNumbers, showScriptL
           <button
             onClick={copySelected}
             disabled={selected.size === 0}
-            className="h-8 px-4 rounded-full border border-border text-sm font-bold text-primary hover:bg-accent transition-all disabled:opacity-50"
+            className="h-8 px-4 rounded-full border border-primary/30 text-sm font-bold text-primary hover:bg-primary/10 transition-all disabled:opacity-50 hover-lift"
           >
             <Copy className="w-3.5 h-3.5 inline mr-1.5" />
             Copy Selected ({selected.size})
@@ -191,7 +191,7 @@ export const GeneratedPrompts = ({ prompts, characters, showNumbers, showScriptL
       {/* Prompt cards */}
       <div className="space-y-4">
         {prompts.map((prompt) => (
-          <div key={prompt.id} className="bg-white border border-border rounded-lg p-[18px] shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] transition-shadow">
+          <div key={prompt.id} className="glass border border-primary/20 rounded-lg p-[18px] hover-lift transition-all">
             <div className="space-y-3">
               {/* Bullet number */}
               {showNumbers && (
@@ -202,7 +202,7 @@ export const GeneratedPrompts = ({ prompts, characters, showNumbers, showScriptL
               
               {/* Script line */}
               {showScriptLines && (
-                <div className="text-sm font-semibold text-foreground bg-[#F9FAFB] border border-border p-3 rounded-md mb-3">
+                <div className="text-sm font-semibold text-foreground glass border border-primary/20 p-3 rounded-md mb-3">
                   {prompt.sceneLine}
                 </div>
               )}
@@ -213,7 +213,7 @@ export const GeneratedPrompts = ({ prompts, characters, showNumbers, showScriptL
                   <textarea
                     value={editingText}
                     onChange={(e) => setEditingText(e.target.value)}
-                    className="w-full min-h-[120px] max-h-[300px] p-3 border-2 border-primary rounded-lg text-sm leading-relaxed resize-y custom-scrollbar"
+                    className="w-full min-h-[120px] max-h-[300px] p-3 border-2 border-primary rounded-lg text-sm leading-relaxed resize-y custom-scrollbar bg-background/50 backdrop-blur-sm"
                     autoFocus
                     onKeyDown={(e) => {
                       if (e.key === 'Escape') {
@@ -229,14 +229,13 @@ export const GeneratedPrompts = ({ prompts, characters, showNumbers, showScriptL
                   <div className="flex items-center gap-3">
                     <button
                       onClick={() => handleSave(prompt.id)}
-                      className="h-9 px-6 rounded-[18px] bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition-all flex items-center gap-1.5"
-                      style={{ boxShadow: '0 2px 6px rgba(59, 130, 246, 0.3)' }}
+                      className="h-9 px-6 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-all flex items-center gap-1.5 shadow-[var(--shadow-button)] hover-lift"
                     >
                       ✓ Save
                     </button>
                     <button
                       onClick={handleCancel}
-                      className="h-9 px-6 rounded-[18px] border border-border bg-white text-muted-foreground text-sm font-semibold hover:bg-muted transition-all flex items-center gap-1.5"
+                      className="h-9 px-6 rounded-full border border-primary/30 glass text-muted-foreground text-sm font-semibold hover:bg-primary/10 transition-all flex items-center gap-1.5 hover-lift"
                     >
                       × Cancel
                     </button>
@@ -244,7 +243,7 @@ export const GeneratedPrompts = ({ prompts, characters, showNumbers, showScriptL
                 </div>
               ) : (
                 <>
-                  <div className="text-sm text-[#374151] leading-relaxed whitespace-pre-wrap">
+                  <div className="text-sm text-foreground leading-relaxed whitespace-pre-wrap">
                     {getPromptText(prompt)}
                     {typingPrompts.get(prompt.id) && typingPrompts.get(prompt.id) !== prompt.generatedText && (
                       <span className="animate-pulse">▊</span>
@@ -259,36 +258,32 @@ export const GeneratedPrompts = ({ prompts, characters, showNumbers, showScriptL
                     />
                     <button
                       onClick={() => copyPrompt(prompt)}
-                      className="h-8 px-4 rounded-2xl border border-primary text-primary text-sm hover:bg-primary hover:text-white transition-all flex items-center gap-1.5"
-                      style={{ boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}
+                      className="h-8 px-4 rounded-full border border-primary text-primary text-sm hover:bg-primary hover:text-primary-foreground transition-all flex items-center gap-1.5 shadow-sm hover-lift"
                     >
                       <Copy className="w-3.5 h-3.5" />
                       Copy
                     </button>
                     <button
                       onClick={() => setCharacterPopupPromptId(prompt.id)}
-                      className="h-8 w-9 rounded-2xl border border-primary text-primary hover:bg-primary hover:text-white transition-all flex items-center justify-center relative"
-                      style={{ boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}
+                      className="h-8 w-9 rounded-full border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all flex items-center justify-center relative shadow-sm hover-lift"
                       title="Add characters"
                     >
                       <Users className="w-4 h-4" />
                       {characters.length > 0 && (
-                        <span className="absolute -top-1.5 -right-1.5 w-[18px] h-[18px] bg-primary text-white text-[11px] font-bold rounded-full flex items-center justify-center">
+                        <span className="absolute -top-1.5 -right-1.5 w-[18px] h-[18px] bg-primary text-primary-foreground text-[11px] font-bold rounded-full flex items-center justify-center shadow-[var(--shadow-button)]">
                           {characters.length}
                         </span>
                       )}
                     </button>
                     <button
                       onClick={() => handleEdit(prompt.id)}
-                      className="h-8 w-[70px] rounded-2xl border border-border text-muted-foreground hover:bg-muted transition-all flex items-center justify-center gap-1"
-                      style={{ boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}
+                      className="h-8 w-[70px] rounded-full border border-primary/30 glass text-foreground hover:bg-primary/10 transition-all flex items-center justify-center gap-1 shadow-sm hover-lift"
                     >
                       <Edit className="w-3.5 h-3.5" />
                       Edit
                     </button>
                     <button
-                      className="h-8 w-9 rounded-2xl border border-destructive text-destructive hover:bg-destructive hover:text-white transition-all flex items-center justify-center"
-                      style={{ boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}
+                      className="h-8 w-9 rounded-full border border-destructive/50 glass text-destructive hover:bg-destructive hover:text-white transition-all flex items-center justify-center shadow-sm hover-lift"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>

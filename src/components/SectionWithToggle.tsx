@@ -49,7 +49,7 @@ export const SectionWithToggle = ({ title, children, lockKey, dataKey, value, on
   const timeSinceLastSave = lastSave ? Math.floor((Date.now() - lastSave) / 1000) : null;
 
   return (
-    <section className="bg-white border border-border rounded-xl p-5 mb-6 shadow-[var(--shadow-card)]">
+    <section className="glass rounded-xl p-5 mb-6 shadow-[var(--shadow-card)] border border-primary/20">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-bold text-primary">{title}</h2>
         <div className="flex items-center gap-3">

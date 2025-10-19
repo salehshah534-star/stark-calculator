@@ -42,7 +42,7 @@ export const PromptLengthSelector = ({
   }, [showScriptLines]);
 
   return (
-    <div className="bg-white border border-border rounded-lg p-3 mb-5 flex items-center justify-between gap-4 shadow-[var(--shadow-soft)] h-[50px]">
+    <div className="glass rounded-lg p-3 mb-5 flex items-center justify-between gap-4 border border-primary/20 h-[50px]">
       <div className="flex items-center gap-2">
         <label className="text-sm font-bold text-primary whitespace-nowrap">
           Prompt Length:
@@ -50,7 +50,7 @@ export const PromptLengthSelector = ({
         <select
           value={value}
           onChange={(e) => onChange(e.target.value as PromptLength)}
-          className="h-8 px-2.5 bg-white border border-border rounded-lg text-xs font-bold text-primary cursor-pointer focus:border-2 focus:border-primary outline-none"
+          className="h-8 px-2.5 glass border border-primary/30 rounded-lg text-xs font-bold text-primary cursor-pointer focus:border-2 focus:border-primary outline-none hover-lift transition-all"
           style={{ width: '160px' }}
         >
           {options.map((option) => (
@@ -66,13 +66,8 @@ export const PromptLengthSelector = ({
           <button
             onClick={() => onShowNumbersChange(!showNumbers)}
             className={`relative w-9 h-5 rounded-[10px] transition-all ${
-              showNumbers ? "bg-primary" : "bg-muted"
+              showNumbers ? "bg-primary shadow-[var(--shadow-button)]" : "bg-muted"
             }`}
-            style={{
-              boxShadow: showNumbers 
-                ? "0 2px 8px rgba(59, 130, 246, 0.3)" 
-                : "0 2px 4px rgba(0, 0, 0, 0.1)"
-            }}
           >
             <div
               className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow-md transition-transform ${
@@ -87,13 +82,8 @@ export const PromptLengthSelector = ({
           <button
             onClick={() => onShowScriptLinesChange(!showScriptLines)}
             className={`relative w-9 h-5 rounded-[10px] transition-all ${
-              showScriptLines ? "bg-primary" : "bg-muted"
+              showScriptLines ? "bg-primary shadow-[var(--shadow-button)]" : "bg-muted"
             }`}
-            style={{
-              boxShadow: showScriptLines 
-                ? "0 2px 8px rgba(59, 130, 246, 0.3)" 
-                : "0 2px 4px rgba(0, 0, 0, 0.1)"
-            }}
           >
             <div
               className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow-md transition-transform ${
